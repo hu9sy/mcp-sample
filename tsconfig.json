@@ -12,7 +12,9 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
-    "noEmit": true,
+    "noEmit": false,
+    "outDir": "./dist",
+    "include": ["src/**/*"],
 
     // Best practices
     "strict": true,
