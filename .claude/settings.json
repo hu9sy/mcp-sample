@@ -2,6 +2,8 @@
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
       "mcp__serena__check_onboarding_performed",
       "mcp__serena__onboarding",
       "mcp__serena__list_dir",
@@ -15,6 +17,7 @@
       "Bash(git reset:*)",
       "Bash(git rebase:*)",
       "Write(.vscode/**)"
-    ]
+    ],
+    "ask": []
   }
 }
