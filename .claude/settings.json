@@ -1,0 +1,14 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [],
+    "deny": [
+      "Bash(rm -fr:*)",
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)",
+      "Write(.vscode/**)"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "my-mcp",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "my-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod 755 dist/index.js"
+  },
+  "files": ["build"],
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^24.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.3"
+  }
+}
