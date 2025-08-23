@@ -11,7 +11,12 @@ export const logger = pino({
   transport: {
     target: 'pino-pretty',
     options: {
-      destination: 1,
+      /**
+       * NOTE: stdioベースのmcpサーバはJSON-RPCで標準出力を使用しているため
+       *       ログ出力先は標準エラーを指定
+       * @see https://modelcontextprotocol.io/quickstart/server#logging-in-mcp-servers-2
+       */
+      destination: 2,
       colorize: true,
       translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',
       ignore: 'pid,hostname',
@@ -19,4 +24,3 @@ export const logger = pino({
     },
   },
 });
-
