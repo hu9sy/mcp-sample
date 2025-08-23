@@ -1,5 +1,6 @@
 {
   "name": "my-mcp",
+  "version": "0.0.1",
   "type": "module",
   "private": true,
   "bin": {
