@@ -4,10 +4,10 @@
   "type": "module",
   "private": true,
   "bin": {
-    "my-mcp": "./dist/index.js"
+    "my-mcp": "./dist/index.cjs"
   },
   "scripts": {
-    "build": "rm -fr dist && esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/index.js && chmod 755 dist/index.js",
+    "build": "rm -fr dist && esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/index.cjs --format=cjs && chmod 755 dist/index.cjs",
     "typecheck": "tsc --noEmit",
     "start": "tsx src/index.ts"
   },
