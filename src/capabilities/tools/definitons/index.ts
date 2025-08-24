@@ -1,6 +1,6 @@
 import type { Tool } from '../types';
 
-import { currentWeatherTool } from './current-weather';
+import { currentWeatherTool } from './sample';
 
 // Export all tools as an array for easy iteration
 export const definitions: Tool<any>[] = [
