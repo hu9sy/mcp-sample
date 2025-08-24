@@ -7,7 +7,7 @@
     "my-mcp": "./dist/index.cjs"
   },
   "scripts": {
-    "build": "rm -fr dist && esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/index.cjs --format=cjs && chmod 755 dist/index.cjs",
+    "build": "rm -fr dist && esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/index.cjs --format=cjs --external:fsevents --external:worker_threads --minify && chmod 755 dist/index.cjs",
     "typecheck": "tsc --noEmit",
     "start": "tsx src/index.ts"
   },
