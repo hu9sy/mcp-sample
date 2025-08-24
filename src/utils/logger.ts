@@ -1,5 +1,14 @@
 import pino from 'pino';
 
+export const LOG_LEVEL = {
+  TRACE: 'trace',
+  DEBUG: 'debug',
+  INFO: 'info',
+  WARN: 'warn',
+  ERROR: 'error',
+  FATAL: 'fatal',
+} as const;
+
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'production';
 }
@@ -7,7 +16,7 @@ if (!process.env.NODE_ENV) {
 const isProduction = process.env.NODE_ENV === 'production';
 
 export const logger = pino({
-  level: isProduction ? 'error' : 'debug',
+  level: isProduction ? LOG_LEVEL.ERROR : LOG_LEVEL.DEBUG,
   transport: {
     target: 'pino-pretty',
     options: {
