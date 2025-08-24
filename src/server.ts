@@ -1,9 +1,11 @@
 import { McpServer as BaseMcpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import * as promptDefinitions from "./capabilities/prompts/definitions";
+import * as resourceDefinitions from "./capabilities/resources/definitions";
 import * as toolDefinitions from "./capabilities/tools/definitions";
 import { name, version } from '../package.json';
 import { logger } from './utils/logger';
+import { UriTemplate } from "@modelcontextprotocol/sdk/shared/uriTemplate.js";
 
 export class StdioMcpServer extends BaseMcpServer {
     constructor() {
@@ -12,6 +14,7 @@ export class StdioMcpServer extends BaseMcpServer {
 
     async run(): Promise<void> {
         this.registerPromptDefinitions();
+        this.registerResourceDefinitions();
         this.registerToolDefinitions();
 
         // Start receiving messages on stdin and sending messages on stdout
@@ -38,6 +41,29 @@ export class StdioMcpServer extends BaseMcpServer {
             logger.info(`Successfully registered ${prompts.length} prompts`);
         } catch (error) {
             logger.error({ error }, "Error registering prompts");
+            throw error;
+        }
+    }
+
+    private registerResourceDefinitions(): void {
+        const resources = Object.values(resourceDefinitions);
+        try {
+            resources.forEach(resource => {
+                this.registerResource(
+                    resource.name,
+                    resource.uri,
+                    {
+                        title: resource.title,
+                        description: resource.description,
+                        mimeType: resource.mimeType,
+                    },
+                    resource.handler
+                )
+            });
+
+            logger.info(`Successfully registered ${resources.length} resources`);
+        } catch (error) {
+            logger.error({ error }, "Error registering resources");
             throw error;
         }
     }
