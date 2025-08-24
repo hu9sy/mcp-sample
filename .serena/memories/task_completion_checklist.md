@@ -1,38 +1,37 @@
 # Task Completion Checklist
 
-## Standard Development Workflow
+## Before Committing Code
 
-### Code Quality Checks
-Since this is a TypeScript project with strict settings, after completing any coding task:
+### 1. Type Checking
+- Run `bun run typecheck` to ensure no TypeScript errors
+- Verify all imports are correctly resolved
+- Check that new code follows strict typing requirements
 
-1. **Type Check**: Run `tsc --noEmit` to verify TypeScript compilation
-2. **Build**: Run `bun run build` to ensure the project builds successfully
-3. **Test**: Run `bun test` if tests exist (currently no tests in the project)
+### 2. Build Verification
+- Run `bun run build` to ensure compilation succeeds
+- Verify the dist/index.js file is created and executable
 
-### Pre-Commit Checklist
-- [ ] Code follows TypeScript strict mode requirements
-- [ ] No TypeScript compilation errors
-- [ ] Build completes successfully
-- [ ] All tests pass (when tests are added)
-- [ ] Code follows Bun API preferences from CLAUDE.md
+### 3. Code Quality
+- Ensure new tools are properly registered in definitons/index.ts
+- Verify error handling is comprehensive
+- Check that logging uses the Pino logger from utils/logger.ts
 
-### MCP-Specific Considerations
-Since this is an MCP server project:
-- [ ] Ensure MCP protocol compliance
-- [ ] Verify server can be started and responds correctly
-- [ ] Test with MCP client if applicable
-- [ ] Check that all required MCP server methods are implemented
+### 4. Environment Variables
+- Ensure any new environment variables are defined in utils/env.ts
+- Update .env.example if needed (when it exists)
 
-### File Management
-- [ ] New files are in appropriate directories (`src/` for source code)
-- [ ] Ensure binary remains executable after build (`chmod 755 dist/index.js` is included in build script)
-- [ ] Update package.json if new dependencies are added
+### 5. Testing (when applicable)
+- Run `bun test` if tests exist
+- Verify new functionality works as expected
 
-### Documentation
-- [ ] Update README.md if significant features are added
-- [ ] Update CLAUDE.md if new conventions or commands are established
+## Git Workflow
+1. Check `git status` for modified files
+2. Review `git diff` for changes
+3. Stage changes with `git add`
+4. Commit with descriptive messages
+5. DO NOT push unless explicitly requested
 
-### Notes
-- Currently no linting or formatting tools are configured
-- No test framework is set up yet
-- Consider adding these tools as the project grows
+## MCP Specific Checks
+- Verify tools return proper CallToolResult format
+- Test that the MCP server starts without errors
+- Ensure stdin/stdout communication works properly

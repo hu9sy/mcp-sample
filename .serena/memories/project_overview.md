@@ -1,27 +1,41 @@
 # Project Overview
 
 ## Purpose
-This is a Model Context Protocol (MCP) server project named "my-mcp". Based on the dependencies (@modelcontextprotocol/sdk), this project is designed to create an MCP server that can integrate with various AI assistants and tools. Currently, it appears to be in early development stage with just a basic hello world implementation.
+This is a Model Context Protocol (MCP) server implementation called "my-mcp". It's designed to provide tools and capabilities to LLM clients through the MCP standard.
 
 ## Tech Stack
-- **Runtime**: Bun (fast all-in-one JavaScript runtime)
-- **Language**: TypeScript
-- **Main Framework**: Model Context Protocol SDK (@modelcontextprotocol/sdk v1.17.3)
-- **Type Definitions**: @types/node, @types/bun
+- **Runtime**: Bun (v1.2.20+) - preferred over Node.js
+- **Language**: TypeScript with strict type checking
+- **Main Dependencies**:
+  - `@modelcontextprotocol/sdk` (v1.17.3) - MCP SDK for TypeScript
+  - `axios` - HTTP client for external API calls
+  - `zod` - Schema validation
+  - `pino` / `pino-pretty` - Logging
+  - `@t3-oss/env-core` - Environment variable management
 
 ## Project Structure
 ```
-my-mcp/
-├── src/
-│   └── index.ts          # Main entry point (currently just "Hello via Bun!")
-├── dist/                 # Build output directory
-├── package.json          # Project configuration and dependencies
-├── tsconfig.json         # TypeScript configuration
-├── bun.lock             # Bun lockfile
-├── README.md            # Basic project documentation
-├── CLAUDE.md            # Claude-specific instructions (Bun preferences)
-└── .gitignore           # Git ignore rules
+src/
+├── index.ts                     # Entry point
+├── server.ts                    # Main MCP server class (StdioMcpServer)
+├── capabilities/
+│   ├── tools/
+│   │   ├── types.ts            # Tool type definitions
+│   │   ├── definitons/
+│   │   │   ├── index.ts        # Tool registry
+│   │   │   └── sample.ts       # Sample weather tool implementation
+│   ├── resources/
+│   │   └── registry.ts         # Resource definitions
+│   └── prompts/
+│       └── registry.ts         # Prompt definitions
+└── utils/
+    ├── logger.ts               # Pino logger setup
+    └── env.ts                  # Environment variable validation
 ```
 
-## Current Status
-The project is in its initial state with only a basic console.log statement in the main file. It's set up as a CLI tool with a binary entry point at "./dist/index.js".
+## Key Features
+- Stdio-based MCP server communication
+- Modular tool architecture with type-safe registration
+- Weather API integration (sample implementation)
+- Structured logging with Pino
+- Environment-based configuration

@@ -1,29 +1,34 @@
-# Suggested Development Commands
+# Suggested Commands
 
-## Package Management
-- `bun install` - Install dependencies
-- `bun update` - Update dependencies
+## Development Commands
 
-## Development
-- `bun run index.ts` - Run the TypeScript file directly (as shown in README)
-- `bun src/index.ts` - Alternative way to run the main file
-- `bun --hot ./src/index.ts` - Run with hot reload for development
+### Building and Type Checking
+- `bun run build` - Compile TypeScript and make dist/index.js executable
+- `bun run typecheck` - Run TypeScript type checking without emitting files
 
-## Build
-- `bun run build` - Build the project (runs `tsc && chmod 755 dist/index.js`)
-- `tsc` - TypeScript compilation only
+### Running the Project
+- `bun run index.ts` - Run the MCP server directly
+- `bun ./dist/index.js` - Run the compiled version
 
-## Testing
-- `bun test` - Run tests (no test files exist yet, but this is the standard Bun test command)
+### Package Management
+- `bun install` - Install dependencies (preferred over npm/yarn)
+- `bun add <package>` - Add new dependencies
+- `bun remove <package>` - Remove dependencies
 
-## Execution
-- `./dist/index.js` - Run the built binary
-- `my-mcp` - Run via the bin entry (after build and proper installation)
+### Testing
+- `bun test` - Run tests (when available)
 
-## System Utilities (macOS/Darwin)
+### Git Operations
+- `git status` - Check working tree status
+- `git add <files>` - Stage changes
+- `git commit -m "message"` - Commit changes
+- `git log --oneline -n` - View recent commits
+
+### System Utilities (macOS/Darwin)
 - `ls` - List directory contents
-- `find` - Search for files and directories
-- `grep` - Search text patterns in files
-- `git` - Version control operations
-- `cd` - Change directory
-- `pwd` - Show current directory
+- `find` - Search for files (though prefer ripgrep/rg)
+- `grep` / `rg` - Search in files (ripgrep preferred)
+- `cat` - Display file contents
+
+## MCP Server Usage
+The server runs on stdio and communicates with MCP clients. It exposes tools for weather data and other capabilities through the MCP protocol.
