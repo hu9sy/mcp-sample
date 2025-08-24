@@ -14,6 +14,7 @@
       "devDependencies": {
         "@types/bun": "latest",
         "@types/node": "^24.3.0",
+        "esbuild": "^0.25.9",
         "tsx": "^4.20.5",
       },
       "peerDependencies": {

@@ -7,7 +7,7 @@
     "my-mcp": "./dist/index.js"
   },
   "scripts": {
-    "build": "rm -fr dist && tsc && chmod 755 dist/index.js",
+    "build": "rm -fr dist && esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/index.js && chmod 755 dist/index.js",
     "typecheck": "tsc --noEmit",
     "start": "tsx src/index.ts"
   },
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@types/bun": "latest",
     "@types/node": "^24.3.0",
+    "esbuild": "^0.25.9",
     "tsx": "^4.20.5"
   },
   "peerDependencies": {
