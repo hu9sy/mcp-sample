@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { env } from '../../utils/env';
+import { env } from '../../../utils/env';
 import axios from 'axios';
-import type { Tool } from './registry';
+import type { Tool } from '../types';
 
 const schema = {
     latitude: z.number().min(-90).max(90).describe('Latitude of location'),

@@ -1,22 +1,11 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { registerAllTools } from './capabilities/tools/registry';
+import { StdioMcpServer } from './server';
 import { logger } from './utils/logger';
-import { name, version } from '../package.json';
 
 // Create an MCP server
-const server = new McpServer({
-  name: name,
-  version: version
-});
-
-// Register all tools using the registry
-registerAllTools(server);
+const server = new StdioMcpServer();
 
 async function main() {
-  // Start receiving messages on stdin and sending messages on stdout
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
+  await server.run();
   logger.error("MCP Server running on stdio");
 }
 
