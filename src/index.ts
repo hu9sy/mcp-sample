@@ -2,15 +2,14 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { name, version } from '../package.json';
 import { logger } from './utils/logger.js';
+import { register as toolRegister } from './capabilities/tools/registry';
 
 const server = new McpServer({
   name: name,
   version: version,
-  capabilities: {
-    resources: {},
-    tools: {},
-  },
 });
+
+toolRegister(server);
 
 async function main() {
   const transport = new StdioServerTransport();
