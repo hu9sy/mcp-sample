@@ -32,9 +32,9 @@ export class StdioMcpServer extends BaseMcpServer {
                 );
             });
 
-            console.error(`Successfully registered ${toolDefinitions.length} tools`);
+            logger.info(`Successfully registered ${toolDefinitions.length} tools`);
         } catch (error) {
-            console.error("Error registering tools:", error);
+            logger.error({ error }, "Error registering tools");
             throw error;
         }
     }
