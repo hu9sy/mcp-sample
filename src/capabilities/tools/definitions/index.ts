@@ -2,3 +2,4 @@
 export { currentWeatherTool } from './sample';
 export { forecastWeatherTool } from './sample2';
 export { feelLikeTemparatureTool } from './sample3';
+export { discomfortIndexTool } from './sample4';
