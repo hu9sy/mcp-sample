@@ -1,6 +1,6 @@
 import { McpServer as BaseMcpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { definitions as toolDefinitions } from "./capabilities/tools/definitons";
+import * as toolDefinitions from "./capabilities/tools/definitions";
 import { name, version } from '../package.json';
 import { logger } from './utils/logger';
 
@@ -19,8 +19,9 @@ export class StdioMcpServer extends BaseMcpServer {
     }
 
     private registerToolDefinitions(): void {
+        const tools = Object.values(toolDefinitions);
         try {
-            toolDefinitions.forEach(tool => {
+            tools.forEach(tool => {
                 this.registerTool(
                     tool.name,
                     {
@@ -32,7 +33,7 @@ export class StdioMcpServer extends BaseMcpServer {
                 );
             });
 
-            logger.info(`Successfully registered ${toolDefinitions.length} tools`);
+            logger.info(`Successfully registered ${tools.length} tools`);
         } catch (error) {
             logger.error({ error }, "Error registering tools");
             throw error;
