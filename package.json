@@ -7,7 +7,7 @@
     "my-mcp": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsc && chmod 755 dist/index.js",
+    "build": "rm -fr dist && tsc && chmod 755 dist/index.js",
     "typecheck": "tsc --noEmit",
     "start": "tsx src/index.ts"
   },
