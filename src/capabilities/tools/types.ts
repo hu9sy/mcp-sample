@@ -6,10 +6,24 @@ import { z } from 'zod';
 type MaybePromise<T> = T | Promise<T>;
 
 /**
+ * Tool response content types
+ */
+type TextContent = {
+    type: "text";
+    text: string;
+};
+
+type ImageContent = {
+    type: "image";
+    data: string;
+    mimeType?: string;
+};
+
+/**
  * Tool response type
  */
 type Response = {
-    content: Array<{ type: "text"; text: string }>;
+    content: Array<TextContent | ImageContent>;
     isError?: boolean;
 };
 
